@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثانوية الذوات الأهلية - منصة التقييم والنتائج</title>
+    <style>
+        :root {
+            --bg-color: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --primary-blue: #0284c7;
+            --primary-hover: #0369a1;
+            --sky-accent: #e0f2fe;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* خلفية تعليمية هندسية متناسقة مصممة بالكود لضمان ظهورها فوراً */
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(#bae6fd 1.5px, transparent 1.5px), 
+                radial-gradient(#bae6fd 1.5px, var(--bg-color) 1.5px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .school-header {
+            text-align: center;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            color: var(--text-main);
+            padding: 30px 20px;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            animation: fadeInScale 0.7s ease-out;
+        }
+
+        .school-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .school-header p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 0.92rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 14px 24px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        .btn-teacher { 
+            background-color: var(--primary-blue); 
+            color: #ffffff; 
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+        }
+        .btn-teacher:hover { 
+            background-color: var(--primary-hover); 
+            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35); 
+        }
+
+        .btn-student { 
+            background-color: var(--sky-accent); 
+            color: var(--primary-blue); 
+            border: 1px solid #bae6fd; 
+        }
+        .btn-student:hover { 
+            background-color: #bae6fd; 
+        }
+
+        .btn-back {
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            margin-top: 15px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+        .btn-back:hover { 
+            background-color: #e2e8f0; 
+            color: var(--text-main); 
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-blue);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background-color: #ffffff;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            padding: 13px;
+            margin-top: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .submit-btn:hover { background-color: var(--primary-hover); }
+
+        .hidden { display: none !important; }
+
+        .error-msg {
+            color: #ef4444;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .result-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            border-right: 4px solid var(--primary-blue);
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            animation: fadeInScale 0.4s ease;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+        th { background-color: var(--sky-accent); color: var(--primary-blue); }
+        tr:not(:last-child) td { border-bottom: 1px solid var(--border-color); }
+
+        .teacher-badge {
+            background-color: var(--sky-accent);
+            color: var(--primary-blue);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border: 1px solid #bae6fd;
+        }
+
+        /* هدية شركة الانماط */
+        .gift-section {
+            margin-top: 25px;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            animation: fadeInScale 0.85s ease;
+        }
+
+        .gift-section h3 {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* أهداف المدرسة والحكم التعليمية */
+        .school-goals {
+            margin-top: 25px;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            padding: 25px;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 650px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            animation: fadeInScale 0.9s ease;
+        }
+
+        .school-goals h3 {
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+            font-size: 1.15rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .school-goals ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .school-goals li {
+            background: #ffffff;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            color: var(--text-main);
+            font-weight: 500;
+            border-right: 4px solid var(--primary-blue);
+            border-top: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.25s ease;
+        }
+
+        .school-goals li:hover {
+            transform: translateX(-6px);
+            background: var(--sky-accent);
+            border-color: #bae6fd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ترويسة المدرسة -->
+    <div class="school-header">
+        <h1>ثانوية الذوات الأهلية</h1>
+        <p>المنصة الإلكترونية لمتابعة مستويات الطلاب والنتائج الامتحانية</p>
+    </div>
+
+    <div class="container">
+        <div id="welcomeScreen">
+            <h2>مرحباً بك في المنصة المدرسية</h2>
+            <p class="subtitle">يرجى تحديد صفحتك للمتابعة:</p>
+            <div class="btn-group">
+                <button class="btn-teacher" onclick="showScreen('teacherLoginScreen')">أنا مدرس 👨‍🏫</button>
+                <button class="btn-student" onclick="showScreen('studentChoiceScreen')">أنا طالب / ولي أمر 🎓</button>
+            </div>
+        </div>
+
+        <div id="teacherLoginScreen" class="hidden">
+            <h2>تسجيل دخول المدرسين</h2>
+            <p class="subtitle">يرجى إدخال اسمك وتخصصك والرمز السري للمتابعة</p>
+            
+            <div class="form-group">
+                <label>اسم المدرس:</label>
+                <input type="text" id="teacherNameInput" placeholder="أدخل اسمك أستاذ" required>
+            </div>
+
+            <div class="form-group">
+                <label>تخصص المدرس (المادة):</label>
+                <select id="teacherSubjectInput">
+                    <option value="الرياضيات">الرياضيات</option>
+                    <option value="اللغة العربية">اللغة العربية</option>
+                    <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                    <option value="العلوم العامة">العلوم العامة</option>
+                    <option value="الفيزياء">الفيزياء</option>
+                    <option value="الكيمياء">الكيمياء</option>
+                    <option value="الاجتماعيات">الاجتماعيات</option>
+                    <option value="التربية الإسلامية">التربية الإسلامية</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>الرقم السري:</label>
+                <input type="password" id="teacherPin" placeholder="أدخل الرمز هنا">
+            </div>
+
+            <button class="submit-btn btn-teacher" onclick="verifyTeacherPin()">دخول اللوحة</button>
+            <p id="pinError" class="error-msg hidden">الرقم السري غير صحيح أو يرجى كتابة الاسم!</p>
+            <button class="btn-back" onclick="showScreen('welcomeScreen')">الرجوع للخلف</button>
+        </div>
+
+        <div id="teacherMenuScreen" class="hidden">
+            <h2>لوحة تحكم المدرس</h2>
+            <div id="teacherBadge" class="teacher-badge"></div>
+            <p class="subtitle">اختر الخدمة التي تريد القيام بها:</p>
+
+            <div class="btn-group" style="flex-direction: column;">
+                <button class="btn-student" onclick="showScreen('teacherEvalScreen')">📝 تقييم مستوى الطالب اليومي</button>
+                <button class="btn-teacher" onclick="showScreen('teacherExamGradeScreen')">📊 إدخال الدرجة الامتحانية للطالب</button>
+            </div>
+
+            <button class="btn-back" onclick="showScreen('welcomeScreen')">تسجيل الخروج</button>
+        </div>
+
+        <div id="teacherEvalScreen" class="hidden">
+            <h2>إدخال تقييم مستوى الطالب اليومي</h2>
+
+            <form id="teacherForm" onsubmit="saveTeacherData(event)">
+                <div class="form-group">
+                    <label>اسم الطالب الثلاثي (أو الرقم الامتحاني):</label>
+                    <input type="text" id="tStudentKey" placeholder="مثال: أحمد علي أو 101" required>
+                </div>
+
+                <div class="form-group">
+                    <label>مستوى الطالب اليومي:</label>
+                    <select id="tDailyStatus">
+                        <option value="ممتاز ومشارك بفعالية 🌟">ممتاز ومشارك بفعالية 🌟</option>
+                        <option value="جيد جداً ومواظب 👍">جيد جداً ومواظب 👍</option>
+                        <option value="جيد ويحتاج اهتمام بالواجب 📝">جيد ويحتاج اهتمام بالواجب 📝</option>
+                        <option value="ضعيف وغير محضر للدرس ⚠️">ضعيف وغير محضر للدرس ⚠️</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>الدرجة اليومية (من 10):</label>
+                    <input type="number" id="tDailyGrade" min="0" max="10" placeholder="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label>ملاحظة أستاذ المادة لولي الأمر:</label>
+                    <textarea id="tDailyNote" rows="3" placeholder="اكتب ملاحظة خاصة بمستوى الطالب..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">حفظ التقييم اليومي</button>
+            </form>
+            <button class="btn-back" onclick="showScreen('teacherMenuScreen')">الرجوع للقائمة الرئيسية</button>
+        </div>
+
+        <div id="teacherExamGradeScreen" class="hidden">
+            <h2>إدخال الدرجة الامتحانية للطالب</h2>
+            <p class="subtitle">ستظهر هذه الدرجة في كشف النتائج النهائية للطالب</p>
+
+            <form id="teacherExamForm" onsubmit="saveExamGrade(event)">
+                <div class="form-group">
+                    <label>اسم الطالب الثلاثي (أو الرقم الامتحاني):</label>
+                    <input type="text" id="eStudentKey" placeholder="مثال: أحمد علي أو 101" required>
+                </div>
+
+                <div class="form-group">
+                    <label>الدرجة الامتحانية (من 100) لـ مادة (<span id="examSubjectLabel" style="color:var(--primary-blue);">-</span>):</label>
+                    <input type="number" id="eStudentGrade" min="0" max="100" placeholder="مثال: 85" required>
+                </div>
+
+                <button type="submit" class="submit-btn">حفظ الدرجة في سجل النتائج</button>
+            </form>
+            <button class="btn-back" onclick="showScreen('teacherMenuScreen')">الرجوع للقائمة الرئيسية</button>
+        </div>
+
+        <div id="studentChoiceScreen" class="hidden">
+            <h2>بوابة الطالب وولي الأمر</h2>
+            <p class="subtitle">ماذا تفضل أن تستعرض اليوم؟</p>
+            <div class="btn-group" style="flex-direction: column;">
+                <button class="btn-student" onclick="showScreen('dailyFollowScreen')">📈 متابعة مستوى ابنك اليومي</button>
+                <button class="btn-teacher" onclick="showScreen('examResultScreen')">📋 استعراض النتائج الامتحانية</button>
+            </div>
+            <button class="btn-back" onclick="showScreen('welcomeScreen')">الرجوع للخلف</button>
+        </div>
+
+        <div id="dailyFollowScreen" class="hidden">
+            <h2>متابعة المستوى اليومي</h2>
+            
+            <div class="form-group">
+                <label>أدخل اسم الطالب أو الرقم الامتحاني:</label>
+                <input type="text" id="searchDailyKey" placeholder="اكتب اسم الطالب أو رقمه">
+            </div>
+
+            <div class="form-group">
+                <label>اختر المادة المراد استعراض تقييمها:</label>
+                <select id="searchDailySubject">
+                    <option value="الرياضيات">الرياضيات</option>
+                    <option value="اللغة العربية">اللغة العربية</option>
+                    <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                    <option value="العلوم العامة">العلوم العامة</option>
+                    <option value="الفيزياء">الفيزياء</option>
+                    <option value="الكيمياء">الكيمياء</option>
+                    <option value="الاجتماعيات">الاجتماعيات</option>
+                    <option value="التربية الإسلامية">التربية الإسلامية</option>
+                </select>
+            </div>
+
+            <button class="submit-btn" onclick="searchStudentDailyData()">عرض التقرير لهذه المادة</button>
+            
+            <div id="dailyResultBox" class="result-card hidden">
+                <h3 id="dName" style="color: var(--text-main); margin-bottom: 8px;">-</h3>
+                <p><strong>المادة الدراسية:</strong> <span id="dSubject" style="color: var(--primary-blue); font-weight: bold;">-</span></p>
+                <p><strong>المدرس المقيّم:</strong> <span id="dTeacherName" style="color: var(--primary-blue); font-weight: bold;">-</span></p>
+                <p><strong>المستوى اليومي:</strong> <span id="dStatus" style="color: #0284c7; font-weight: bold;">-</span></p>
+                <p><strong>الدرجة اليومية:</strong> <span id="dGrade" style="font-weight: bold;">-</span> / 10</p>
+                <p style="margin-top: 8px;"><strong>ملاحظة المدرس:</strong> <span id="dNote" style="font-style: italic; color: var(--text-muted);">-</span></p>
+            </div>
+            <p id="dailyError" class="error-msg hidden">لم يتم العثور على تقييم مدخل لهذه المادة لهذا الطالب!</p>
+            <button class="btn-back" onclick="showScreen('studentChoiceScreen')">الرجوع</button>
+        </div>
+
+        <div id="examResultScreen" class="hidden">
+            <h2>النتائج الامتحانية العامة</h2>
+            <div class="form-group">
+                <label>أدخل اسم الطالب أو الرقم الامتحاني:</label>
+                <input type="text" id="searchExamId" placeholder="اكتب اسم الطالب أو رقمه">
+            </div>
+            <button class="submit-btn" onclick="showStudentExamResults()">عرض كشف الدرجات</button>
+            
+            <div id="examResultBox" class="result-card hidden">
+                <h3 id="eName" style="color: var(--text-main); margin-bottom: 5px;">-</h3>
+                
+                <h4 style="margin-top: 10px; font-size: 0.95rem; color: var(--text-muted);">جدول الدرجات الامتحانية المدخلة:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المادة</th>
+                            <th>الدرجة</th>
+                            <th>التقييم</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gradesTable"></tbody>
+                </table>
+                <br>
+                <p><strong>المعدل العام:</strong> <span id="eAverage" style="color: var(--primary-blue); font-weight: bold; font-size: 1.1rem;">-</span></p>
+                <p><strong>النتيجة النهائية:</strong> <span id="eStatus" style="font-weight: bold;">-</span></p>
+            </div>
+            <p id="examError" class="error-msg hidden">لم يتم إدخال درجات امتحانية لهذا الطالب بعد!</p>
+            <button class="btn-back" onclick="showScreen('studentChoiceScreen')">الرجوع للخلف</button>
+        </div>
+    </div>
+
+    <!-- هدية شركة الانماط -->
+    <div class="gift-section">
+        <h3>هدية شركة الانماط</h3>
+    </div>
+
+    <!-- أهداف المدرسة والحكم التعليمية -->
+    <div class="school-goals">
+        <h3>🎯 حكم وأهداف تربوية في ثانوية الذوات</h3>
+        <ul>
+            <li>العلم نور يضيء عقول الأجيال نحو مستقبل مشرق ومليء بالإنجازات.</li>
+            <li>الاستثمار في التكنولوجيا والذكاء الاصطناعي هو مفتاح القيادة للغد.</li>
+            <li>البيئة التربوية المحفزة تصنع طالباً مبدعاً وقادراً على مواجهة التحديات.</li>
+            <li>التعاون المستمر بين البيت والمدرسة هو أساس تفوق الطالب ونجاحه المستمر.</li>
+        </ul>
+    </div>
+
+    <script>
+        let currentTeacher = { name: "", subject: "" };
+        let db;
+
+        const request = indexedDB.open("AlhawatSchoolDB", 1);
+
+        request.onupgradeneeded = function(e) {
+            db = e.target.result;
+            if (!db.objectStoreNames.contains("dailyEvals")) {
+                db.createObjectStore("dailyEvals", { keyPath: "id" });
+            }
+            if (!db.objectStoreNames.contains("examGrades")) {
+                db.createObjectStore("examGrades", { keyPath: "id" });
+            }
+        };
+
+        request.onsuccess = function(e) {
+            db = e.target.result;
+        };
+
+        request.onerror = function(e) {
+            console.error("خطأ في فتح قاعدة البيانات المحلية", e);
+        };
+
+        function showScreen(screenId) {
+            const screens = ['welcomeScreen', 'teacherLoginScreen', 'teacherMenuScreen', 'teacherEvalScreen', 'teacherExamGradeScreen', 'studentChoiceScreen', 'dailyFollowScreen', 'examResultScreen'];
+            screens.forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.add('hidden');
+            });
+            const target = document.getElementById(screenId);
+            target.classList.remove('hidden');
+            target.style.animation = 'none';
+            target.offsetHeight;
+            target.style.animation = 'fadeInScale 0.4s ease-out forwards';
+        }
+
+        function verifyTeacherPin() {
+            const name = document.getElementById('teacherNameInput').value.trim();
+            const subject = document.getElementById('teacherSubjectInput').value;
+            const pin = document.getElementById('teacherPin').value.trim();
+            const err = document.getElementById('pinError');
+
+            if (pin === "2025" && name !== "") {
+                err.classList.add('hidden');
+                currentTeacher = { name: name, subject: subject };
+                document.getElementById('teacherBadge').innerText = `أهلاً بك أستاذ/ة: ${name} (مدرس مادة: ${subject})`;
+                document.getElementById('examSubjectLabel').innerText = subject;
+                document.getElementById('teacherPin').value = "";
+                showScreen('teacherMenuScreen');
+            } else {
+                err.classList.remove('hidden');
+            }
+        }
+
+        function saveTeacherData(e) {
+            e.preventDefault();
+            const studentKey = document.getElementById('tStudentKey').value.trim().toLowerCase();
+            const status = document.getElementById('tDailyStatus').value;
+            const grade = document.getElementById('tDailyGrade').value;
+            const note = document.getElementById('tDailyNote').value.trim() || "لا توجد ملاحظات إضافية.";
+
+            const studentData = {
+                id: `eval_${studentKey}_${currentTeacher.subject}`,
+                studentKey: studentKey,
+                studentName: document.getElementById('tStudentKey').value.trim(),
+                teacherName: currentTeacher.name,
+                subject: currentTeacher.subject,
+                status: status,
+                grade: grade,
+                note: note
+            };
+
+            const tx = db.transaction("dailyEvals", "readwrite");
+            const store = tx.objectStore("dailyEvals");
+            store.put(studentData);
+
+            tx.oncomplete = function() {
+                alert(`تم حفظ التقييم اليومي لمادة (${currentTeacher.subject}) للطالب (${studentData.studentName}) بنجاح على هذا الجهاز!`);
+                document.getElementById('teacherForm').reset();
+            };
+        }
+
+        function saveExamGrade(e) {
+            e.preventDefault();
+            const studentKey = document.getElementById('eStudentKey').value.trim().toLowerCase();
+            const studentNameReal = document.getElementById('eStudentKey').value.trim();
+            const gradeVal = parseInt(document.getElementById('eStudentGrade').value);
+
+            const tx = db.transaction("examGrades", "readwrite");
+            const store = tx.objectStore("examGrades");
+            const getReq = store.get(studentKey);
+
+            getReq.onsuccess = function() {
+                let examRecord = getReq.result || {
+                    id: studentKey,
+                    studentName: studentNameReal,
+                    grades: {}
+                };
+
+                examRecord.grades[currentTeacher.subject] = gradeVal;
+                store.put(examRecord);
+
+                alert(`تم حفظ درجة مادة (${currentTeacher.subject}) للطالب (${studentNameReal}) بنجاح في سجل النتائج على هذا الجهاز!`);
+                document.getElementById('teacherExamForm').reset();
+            };
+        }
+
+        function searchStudentDailyData() {
+            const studentKey = document.getElementById('searchDailyKey').value.trim().toLowerCase();
+            const selectedSubject = document.getElementById('searchDailySubject').value;
+            const resBox = document.getElementById('dailyResultBox');
+            const errBox = document.getElementById('dailyError');
+
+            if (studentKey === "") {
+                errBox.innerText = "يرجى كتابة اسم الطالب أو الرقم أولاً!";
+                errBox.classList.remove('hidden');
+                resBox.classList.add('hidden');
+                return;
+            }
+
+            const searchId = `eval_${studentKey}_${selectedSubject}`;
+            const tx = db.transaction("dailyEvals", "readonly");
+            const store = tx.objectStore("dailyEvals");
+            const getReq = store.get(searchId);
+
+            getReq.onsuccess = function() {
+                const data = getReq.result;
+                if (data) {
+                    document.getElementById('dName').innerText = "اسم الطالب: " + data.studentName;
+                    document.getElementById('dSubject').innerText = data.subject;
+                    document.getElementById('dTeacherName').innerText = data.teacherName;
+                    document.getElementById('dStatus').innerText = data.status;
+                    document.getElementById('dGrade').innerText = data.grade;
+                    document.getElementById('dNote').innerText = data.note;
+
+                    resBox.classList.remove('hidden');
+                    errBox.classList.add('hidden');
+                } else {
+                    resBox.classList.add('hidden');
+                    errBox.innerText = `لم يتم إضافة تقييم لمادة (${selectedSubject}) لهذا الطالب بعد!`;
+                    errBox.classList.remove('hidden');
+                }
+            };
+        }
+
+        function showStudentExamResults() {
+            const key = document.getElementById('searchExamId').value.trim().toLowerCase();
+            const resBox = document.getElementById('examResultBox');
+            const errBox = document.getElementById('examError');
+
+            if (key === "") {
+                errBox.innerText = "يرجى كتابة الاسم أو الرقم أولاً!";
+                errBox.classList.remove('hidden');
+                resBox.classList.add('hidden');
+                return;
+            }
+
+            const tx = db.transaction("examGrades", "readonly");
+            const store = tx.objectStore("examGrades");
+            const getReq = store.get(key);
+
+            getReq.onsuccess = function() {
+                const record = getReq.result;
+
+                if (record) {
+                    document.getElementById('eName').innerText = "اسم الطالب: " + record.studentName;
+
+                    let total = 0;
+                    let count = 0;
+                    let tableHTML = "";
+                    let isFailedAny = false;
+
+                    for (let sub in record.grades) {
+                        let grade = record.grades[sub];
+                        total += grade;
+                        count++;
+
+                        if (grade < 50) isFailedAny = true;
+
+                        let evalText = grade >= 90 ? "ممتاز 🌟" : grade >= 80 ? "جيد جداً 👍" : grade >= 70 ? "جيد 📝" : grade >= 50 ? "مقبول 👌" : "راسب ⚠️";
+
+                        tableHTML += `<tr>
+                            <td>${sub}</td>
+                            <td style="color:${grade < 50 ? '#ef4444' : '#0284c7'}; font-weight:bold;">${grade}</td>
+                            <td>${evalText}</td>
+                        </tr>`;
+                    }
+
+                    if (count === 0) {
+                        errBox.innerText = "لم تقم الإدارة أو المدرسين برصد أي درجات امتحانية لهذا الطالب بعد!";
+                        errBox.classList.remove('hidden');
+                        resBox.classList.add('hidden');
+                        return;
+                    }
+
+                    const avg = (total / count).toFixed(1);
+                    document.getElementById('gradesTable').innerHTML = tableHTML;
+                    document.getElementById('eAverage').innerText = avg + "%";
+
+                    if (!isFailedAny && avg >= 50) {
+                        document.getElementById('eStatus').innerText = "ناجح 🏆";
+                        document.getElementById('eStatus').style.color = "#10b981";
+                    } else {
+                        document.getElementById('eStatus').innerText = "مكمل / راسب ⚠️";
+                        document.getElementById('eStatus').style.color = "#ef4444";
+                    }
+
+                    resBox.classList.remove('hidden');
+                    errBox.classList.add('hidden');
+                } else {
+                    resBox.classList.add('hidden');
+                    errBox.innerText = "لم يتم العثور على درجات امتحانية مدخلة لهذا الطالب!";
+                    errBox.classList.add('hidden');
+                }
+            };
+        }
+    </script>
+</body>
+</html>
