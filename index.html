@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ثانوية الذوات الأهلية - منصة التقييم والنتائج</title>
+    <title>مؤسسة الذكوات للتعليم الأهلي - منصة التقييم والنتائج</title>
     <style>
         :root {
             --bg-color: #f1f5f9;
@@ -25,7 +25,6 @@
         }
 
         body {
-            /* خلفية تعليمية هندسية متناسقة مصممة بالكود لضمان ظهورها فوراً */
             background-color: var(--bg-color);
             background-image: 
                 radial-gradient(#bae6fd 1.5px, transparent 1.5px), 
@@ -51,18 +50,22 @@
             }
         }
 
-        .school-header {
-            text-align: center;
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            color: var(--text-main);
-            padding: 30px 20px;
-            border-radius: var(--radius);
+        .school-header, .container, .gift-section, .school-goals {
             width: 100%;
             max-width: 650px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
+            margin-top: 20px;
             animation: fadeInScale 0.7s ease-out;
+        }
+
+        .school-header {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 0;
         }
 
         .school-header h1 {
@@ -78,16 +81,7 @@
         }
 
         .container {
-            width: 100%;
-            max-width: 650px;
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
             padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-            margin-top: 20px;
-            border: 1px solid var(--border-color);
-            animation: fadeInScale 0.8s ease-out;
         }
 
         h2 {
@@ -214,9 +208,7 @@
             border-radius: 12px;
             border-right: 4px solid var(--primary-blue);
             margin-top: 20px;
-            border-top: 1px solid var(--border-color);
-            border-left: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
             animation: fadeInScale 0.4s ease;
         }
 
@@ -249,19 +241,9 @@
             border: 1px solid #bae6fd;
         }
 
-        /* هدية شركة الانماط */
         .gift-section {
-            margin-top: 25px;
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
             padding: 20px;
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 650px;
             text-align: center;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            animation: fadeInScale 0.85s ease;
         }
 
         .gift-section h3 {
@@ -270,18 +252,8 @@
             font-weight: 700;
         }
 
-        /* أهداف المدرسة والحكم التعليمية */
         .school-goals {
-            margin-top: 25px;
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
             padding: 25px;
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 650px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            animation: fadeInScale 0.9s ease;
         }
 
         .school-goals h3 {
@@ -308,9 +280,7 @@
             color: var(--text-main);
             font-weight: 500;
             border-right: 4px solid var(--primary-blue);
-            border-top: 1px solid var(--border-color);
-            border-left: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
             transition: all 0.25s ease;
         }
@@ -324,15 +294,16 @@
 </head>
 <body>
 
-    <!-- ترويسة المدرسة -->
+    <!-- ترويسة المؤسسة -->
     <div class="school-header">
-        <h1>ثانوية الذوات الأهلية</h1>
+        <h1>مؤسسة الذكوات للتعليم الأهلي</h1>
         <p>المنصة الإلكترونية لمتابعة مستويات الطلاب والنتائج الامتحانية</p>
     </div>
 
     <div class="container">
+        <!-- شاشة الترحيب -->
         <div id="welcomeScreen">
-            <h2>مرحباً بك في المنصة المدرسية</h2>
+            <h2>مرحباً بك في المنصة التعليمية</h2>
             <p class="subtitle">يرجى تحديد صفحتك للمتابعة:</p>
             <div class="btn-group">
                 <button class="btn-teacher" onclick="showScreen('teacherLoginScreen')">أنا مدرس 👨‍🏫</button>
@@ -340,6 +311,7 @@
             </div>
         </div>
 
+        <!-- تسجيل دخول المدرسين -->
         <div id="teacherLoginScreen" class="hidden">
             <h2>تسجيل دخول المدرسين</h2>
             <p class="subtitle">يرجى إدخال اسمك وتخصصك والرمز السري للمتابعة</p>
@@ -369,10 +341,11 @@
             </div>
 
             <button class="submit-btn btn-teacher" onclick="verifyTeacherPin()">دخول اللوحة</button>
-            <p id="pinError" class="error-msg hidden">الرقم السري غير صحيح أو يرجى كتابة الاسم!</p>
+            <p id="pinError" class="error-msg hidden">الرقم السري غير صحيح أو تأكد من إدخال الاسم!</p>
             <button class="btn-back" onclick="showScreen('welcomeScreen')">الرجوع للخلف</button>
         </div>
 
+        <!-- لوحة تحكم المدرس -->
         <div id="teacherMenuScreen" class="hidden">
             <h2>لوحة تحكم المدرس</h2>
             <div id="teacherBadge" class="teacher-badge"></div>
@@ -386,9 +359,9 @@
             <button class="btn-back" onclick="showScreen('welcomeScreen')">تسجيل الخروج</button>
         </div>
 
+        <!-- تقييم الطالب اليومي -->
         <div id="teacherEvalScreen" class="hidden">
             <h2>إدخال تقييم مستوى الطالب اليومي</h2>
-
             <form id="teacherForm" onsubmit="saveTeacherData(event)">
                 <div class="form-group">
                     <label>اسم الطالب الثلاثي (أو الرقم الامتحاني):</label>
@@ -420,6 +393,7 @@
             <button class="btn-back" onclick="showScreen('teacherMenuScreen')">الرجوع للقائمة الرئيسية</button>
         </div>
 
+        <!-- إدخال الدرجات الامتحانية -->
         <div id="teacherExamGradeScreen" class="hidden">
             <h2>إدخال الدرجة الامتحانية للطالب</h2>
             <p class="subtitle">ستظهر هذه الدرجة في كشف النتائج النهائية للطالب</p>
@@ -440,6 +414,7 @@
             <button class="btn-back" onclick="showScreen('teacherMenuScreen')">الرجوع للقائمة الرئيسية</button>
         </div>
 
+        <!-- خيارات الطالب وولي الأمر -->
         <div id="studentChoiceScreen" class="hidden">
             <h2>بوابة الطالب وولي الأمر</h2>
             <p class="subtitle">ماذا تفضل أن تستعرض اليوم؟</p>
@@ -450,6 +425,7 @@
             <button class="btn-back" onclick="showScreen('welcomeScreen')">الرجوع للخلف</button>
         </div>
 
+        <!-- عرض المتابعة اليومية -->
         <div id="dailyFollowScreen" class="hidden">
             <h2>متابعة المستوى اليومي</h2>
             
@@ -486,6 +462,7 @@
             <button class="btn-back" onclick="showScreen('studentChoiceScreen')">الرجوع</button>
         </div>
 
+        <!-- عرض النتائج الامتحانية -->
         <div id="examResultScreen" class="hidden">
             <h2>النتائج الامتحانية العامة</h2>
             <div class="form-group">
@@ -496,7 +473,6 @@
             
             <div id="examResultBox" class="result-card hidden">
                 <h3 id="eName" style="color: var(--text-main); margin-bottom: 5px;">-</h3>
-                
                 <h4 style="margin-top: 10px; font-size: 0.95rem; color: var(--text-muted);">جدول الدرجات الامتحانية المدخلة:</h4>
                 <table>
                     <thead>
@@ -517,14 +493,14 @@
         </div>
     </div>
 
-    <!-- هدية شركة الانماط -->
+    <!-- هدية شركة انماط إلى مؤسسة الذكوات -->
     <div class="gift-section">
-        <h3>هدية شركة الانماط</h3>
+        <h3>هدية شركة انماط إلى مؤسسة الذكوات للتعليم الأهلي</h3>
     </div>
 
-    <!-- أهداف المدرسة والحكم التعليمية -->
+    <!-- أهداف المؤسسة والحكم التعليمية -->
     <div class="school-goals">
-        <h3>🎯 حكم وأهداف تربوية في ثانوية الذوات</h3>
+        <h3>🎯 حكم وأهداف تربوية في مؤسسة الذكوات</h3>
         <ul>
             <li>العلم نور يضيء عقول الأجيال نحو مستقبل مشرق ومليء بالإنجازات.</li>
             <li>الاستثمار في التكنولوجيا والذكاء الاصطناعي هو مفتاح القيادة للغد.</li>
@@ -560,14 +536,10 @@
         function showScreen(screenId) {
             const screens = ['welcomeScreen', 'teacherLoginScreen', 'teacherMenuScreen', 'teacherEvalScreen', 'teacherExamGradeScreen', 'studentChoiceScreen', 'dailyFollowScreen', 'examResultScreen'];
             screens.forEach(id => {
-                const el = document.getElementById(id);
-                el.classList.add('hidden');
+                document.getElementById(id).classList.add('hidden');
             });
             const target = document.getElementById(screenId);
             target.classList.remove('hidden');
-            target.style.animation = 'none';
-            target.offsetHeight;
-            target.style.animation = 'fadeInScale 0.4s ease-out forwards';
         }
 
         function verifyTeacherPin() {
@@ -611,7 +583,7 @@
             store.put(studentData);
 
             tx.oncomplete = function() {
-                alert(`تم حفظ التقييم اليومي لمادة (${currentTeacher.subject}) للطالب (${studentData.studentName}) بنجاح على هذا الجهاز!`);
+                alert(`تم حفظ التقييم اليومي لمادة (${currentTeacher.subject}) للطالب (${studentData.studentName}) بنجاح!`);
                 document.getElementById('teacherForm').reset();
             };
         }
@@ -636,7 +608,7 @@
                 examRecord.grades[currentTeacher.subject] = gradeVal;
                 store.put(examRecord);
 
-                alert(`تم حفظ درجة مادة (${currentTeacher.subject}) للطالب (${studentNameReal}) بنجاح في سجل النتائج على هذا الجهاز!`);
+                alert(`تم حفظ درجة مادة (${currentTeacher.subject}) للطالب (${studentNameReal}) بنجاح في سجل النتائج!`);
                 document.getElementById('teacherExamForm').reset();
             };
         }
@@ -723,7 +695,7 @@
                     }
 
                     if (count === 0) {
-                        errBox.innerText = "لم تقم الإدارة أو المدرسين برصد أي درجات امتحانية لهذا الطالب بعد!";
+                        errBox.innerText = "لم يتم رصد أي درجات امتحانية لهذا الطالب بعد!";
                         errBox.classList.remove('hidden');
                         resBox.classList.add('hidden');
                         return;
@@ -746,7 +718,7 @@
                 } else {
                     resBox.classList.add('hidden');
                     errBox.innerText = "لم يتم العثور على درجات امتحانية مدخلة لهذا الطالب!";
-                    errBox.classList.add('hidden');
+                    errBox.classList.remove('hidden');
                 }
             };
         }
